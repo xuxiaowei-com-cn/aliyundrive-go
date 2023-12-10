@@ -129,8 +129,8 @@
 1. 一键发布到 github，可包含产物上传
 2. 一键发布到 gitlab，可包含产物上传，可自定义域名（支持自建 gitlab），支持将产物文件名、链接导出为 map，可供 gitee 使用
 3. 一键发布到 gitee，由于 gitee 暂不支持提供上传产物的 API 接口，
-   本工具支持提供 json 文件（map 形式，键：代表文件名，值：代表下载链接）作为产物，本项目使用 [GitLink](https://www.gitlink.org.cn) 作为
-   gitee 产物链接
+   本工具支持提供 json 文件（map 形式，键：代表文件名，值：代表下载链接）作为产物，
+   本项目使用 [GitLink](https://www.gitlink.org.cn) 作为 gitee 产物链接
 4. 一键发布到 gitlink，可包含产物上传（需要等到官方开放 token 功能，或者联系官方人员申请 token 才能使用），
    本工具支持提供 json 文件（map 形式，键：代表文件名，值：代表下载链接）作为产物
 
@@ -143,6 +143,7 @@ go env -w GOPROXY=https://goproxy.cn,direct
 # go env -w GOPROXY=https://mirrors.aliyun.com/goproxy,direct
 go get -u github.com/urfave/cli/v2
 go get -u github.com/xuxiaowei-com-cn/git-go@main
+go get -u github.com/xuxiaowei-com-cn/go-aliyundrive@main
 go get -u gopkg.in/yaml.v3
 ```
 
@@ -186,7 +187,8 @@ AUTHOR:
    徐晓伟 <xuxiaowei@xuxiaowei.com.cn>
 
 COMMANDS:
-   help, h  Shows a list of commands or help for one command
+   server, s  服务端命令
+   help, h    Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --help, -h     show help
@@ -195,6 +197,30 @@ GLOBAL OPTIONS:
 COPYRIGHT:
    徐晓伟工作室 <xuxiaowei@xuxiaowei.com.cn>
 ```
+
+- Server 服务端命令
+
+    ```shell
+    $ go run main.go server --help
+    NAME:
+       aliyundrive-go server - 服务端命令
+    
+    USAGE:
+       aliyundrive-go server command [command options] [arguments...]
+    
+    COMMANDS:
+       qrcode   手机扫码授权模式
+       help, h  Shows a list of commands or help for one command
+    
+    OPTIONS:
+       --app-id value, --client-id value          阿里云盘 APP ID、Client Id，网址：https://www.aliyundrive.com/developer/f
+       --app-secret value, --client-secret value  阿里云盘 App Secret、Client Secret，网址：https://www.aliyundrive.com/developer/f
+       --scope value [ --scope value ]            权限列表，网址：https://www.yuque.com/aliyundrive/zpfszx/dspik0
+       --width value                              二维码宽度，网址：https://www.yuque.com/aliyundrive/zpfszx/ttfoy0xt2pza8lof (default: 430)
+       --height value                             二维码高度，网址：https://www.yuque.com/aliyundrive/zpfszx/ttfoy0xt2pza8lof (default: 430)
+       --http-listen-addr value                   HTTP 监听地址 (default: ":8080")
+       --help, -h                                 show help
+    ```
 
 ### test
 
