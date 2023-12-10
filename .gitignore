@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/*.exe
+/*/*.exe
+/aliyundrive-go-windows-*
+/aliyundrive-go-linux-*
+/aliyundrive-go-darwin-*
+
+/buildinfo/buildinfo
